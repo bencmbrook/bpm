@@ -2,7 +2,7 @@
 
 A lightweight beats-per-minute tapper for the Mac status bar
 
-![Example](http://imgur.com/9HkrEkI)
+![Example](http://i.imgur.com/9HkrEkI.gif)
 
 ## Installation
 
