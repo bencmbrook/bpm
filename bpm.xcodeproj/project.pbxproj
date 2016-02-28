@@ -8,16 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		EB8D6ED51C27D60E00D1D9A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8D6ED41C27D60E00D1D9A4 /* AppDelegate.swift */; };
-		EB8D6ED71C27D60E00D1D9A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB8D6ED61C27D60E00D1D9A4 /* Assets.xcassets */; };
 		EB8D6EDA1C27D60E00D1D9A4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB8D6ED81C27D60E00D1D9A4 /* MainMenu.xib */; };
+		EB8D6EE41C27EECB00D1D9A4 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB8D6EE31C27EECB00D1D9A4 /* Media.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EB8D6ED11C27D60E00D1D9A4 /* bpm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bpm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB8D6ED41C27D60E00D1D9A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EB8D6ED61C27D60E00D1D9A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EB8D6ED91C27D60E00D1D9A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		EB8D6EDB1C27D60E00D1D9A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB8D6EE31C27EECB00D1D9A4 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,9 +51,9 @@
 			isa = PBXGroup;
 			children = (
 				EB8D6ED41C27D60E00D1D9A4 /* AppDelegate.swift */,
-				EB8D6ED61C27D60E00D1D9A4 /* Assets.xcassets */,
 				EB8D6ED81C27D60E00D1D9A4 /* MainMenu.xib */,
 				EB8D6EDB1C27D60E00D1D9A4 /* Info.plist */,
+				EB8D6EE31C27EECB00D1D9A4 /* Media.xcassets */,
 			);
 			path = bpm;
 			sourceTree = "<group>";
@@ -116,7 +116,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB8D6ED71C27D60E00D1D9A4 /* Assets.xcassets in Resources */,
+				EB8D6EE41C27EECB00D1D9A4 /* Media.xcassets in Resources */,
 				EB8D6EDA1C27D60E00D1D9A4 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
