@@ -3,6 +3,7 @@
 A lightweight beats-per-minute tapper for the Mac status bar
 
 ![Example](http://i.imgur.com/9HkrEkI.gif)
+
 If you mix music, you're always wondering if the song playing could fit into a set. This discreet app is always available to provide the answer.
 
 ## Installation
