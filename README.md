@@ -7,7 +7,7 @@ If you mix music, you're always wondering if the song playing could fit into a s
 
 ## Installation
 
-Download the zip and open the app!
+[Download the zip.](http://www.builtbybenbrook.com/assets/downloads/bpm.zip) Hold the control key and double-click on the app icon. To use it in the future, drag the app into your Applications folder!
 
 ## Contributing
 
