@@ -13,6 +13,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EB2F983C1C84EA4F003F4D3F /* bpm.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = bpm.entitlements; sourceTree = "<group>"; };
 		EB8D6ED11C27D60E00D1D9A4 /* bpm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bpm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB8D6ED41C27D60E00D1D9A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB8D6ED91C27D60E00D1D9A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -50,6 +51,7 @@
 		EB8D6ED31C27D60E00D1D9A4 /* bpm */ = {
 			isa = PBXGroup;
 			children = (
+				EB2F983C1C84EA4F003F4D3F /* bpm.entitlements */,
 				EB8D6ED41C27D60E00D1D9A4 /* AppDelegate.swift */,
 				EB8D6ED81C27D60E00D1D9A4 /* MainMenu.xib */,
 				EB8D6EDB1C27D60E00D1D9A4 /* Info.plist */,
@@ -90,6 +92,12 @@
 				TargetAttributes = {
 					EB8D6ED01C27D60E00D1D9A4 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 3PEE6TT6W2;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -230,9 +238,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = bpm/bpm.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = bpm/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bencmbrook.bpm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -242,9 +253,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = bpm/bpm.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = bpm/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bencmbrook.bpm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -269,6 +283,7 @@
 				EB8D6EE01C27D60E00D1D9A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
