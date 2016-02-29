@@ -8,7 +8,9 @@ If you mix music, you are always wondering if the song you're listening to could
 
 ## Installation
 
-[Download the zip.](http://www.builtbybenbrook.com/assets/downloads/bpm.zip) Hold the control key and double-click on the app icon. To use it in the future, drag the app into your Applications folder!
+[Download the zip.](http://www.builtbybenbrook.com/assets/downloads/bpm.zip) Simply double click on the app icon to launch the app. To use it in the future, drag the app into your Applications folder!
+
+Compatible with OS X 10.10 Yosemite and later.
 
 ## Contributing
 
