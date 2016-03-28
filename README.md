@@ -12,6 +12,9 @@ If you mix music, you probably wonder if the song you're listening to could fit 
 
 Compatible with OS X 10.10 Yosemite and later.
 
+## Quitting the App
+Control-click the icon to quit.
+
 ## Contributing
 
 1. Fork it!
