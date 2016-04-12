@@ -23,6 +23,10 @@ Control-click the icon to quit.
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request!
 
+## Contributors
+
+Thank you to [harryclegg](https://github.com/harryclegg) for adding the option to hide instructions at launch.
+
 ## License
 
 Creative Commons Attribution 3.0
