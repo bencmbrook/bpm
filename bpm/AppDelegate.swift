@@ -15,14 +15,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
     
+    // load NSUserDefaults
+    let defaults = NSUserDefaults.standardUserDefaults()
+    
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         statusItem.title = "bpm"
+        
         if let button = statusItem.button {
             button.action = Selector("clicked:")
             button.keyEquivalent = ""
-            
         }
-        let answer = dialogOKCancel("Instructions", text: ("Control-Click to quit the app.\nTap to calculate BPM.\n\n\nBuilt by Ben Brook:   www.builtbybenbrook.com"))
+        
+        if !defaults.boolForKey("noShowDialogOnStart") {
+            dialogOKCancelNoshow("Instructions", text: ("Control-Click to quit the app.\nAlt-Click to show this window again.\n\nTap to calculate BPM.\n\n\nBuilt by Ben Brook:   www.builtbybenbrook.com"))
+        }
     }
     
     var lastPress = NSDate()
@@ -31,31 +37,41 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var timer = NSTimer()
     
     
-    func dialogOKCancel(question: String, text: String) -> Bool {
+    func dialogOKCancelNoshow(question: String, text: String) -> Bool {
         let myPopup: NSAlert = NSAlert()
         myPopup.messageText = question
         myPopup.informativeText = text
         myPopup.alertStyle = NSAlertStyle.WarningAlertStyle
         myPopup.addButtonWithTitle("OK")
+        
+        myPopup.showsSuppressionButton = true
+        myPopup.suppressionButton?.title = "Do not show this message on launch"
+        
         let res = myPopup.runModal()
-        if res == NSAlertFirstButtonReturn {
-            return true
+        
+        if (myPopup.suppressionButton?.state == 1) {
+            defaults.setObject(true, forKey: "noShowDialogOnStart")
+        } else {
+            defaults.setObject(false, forKey: "noShowDialogOnStart")
         }
-        return false
+        
+        if res == NSAlertFirstButtonReturn {        // return based on button selected
+            return true                                //  return 1 for OK
+        }
+        return false                                    //  else return 0 for cancel
     }
     
     func clicked(sender: AnyObject?) {
-        var clickMask: Int = 0
         let clickEvent = NSApp.currentEvent!  // see what caused calling of the menu action
             // modifierFlags contains a number with bits set for various modifier keys
             // ControlKeyMask is the enum for the Ctrl key
+            // AlternateKeyMask is the enum for the Alt key
             // use logical and with the raw values to find if the bit is set in modifierFlags
-        clickMask = Int(clickEvent.modifierFlags.rawValue) & Int(NSEventModifierFlags.ControlKeyMask.rawValue)
-        
-        if clickMask != 0 { NSApplication.sharedApplication().terminate(self) } // click with Ctrl pressed
-            
-        // Regular click
-        else {
+        if (Int(clickEvent.modifierFlags.rawValue) & Int(NSEventModifierFlags.ControlKeyMask.rawValue)) != 0 {      // ctrl click to quit
+            NSApplication.sharedApplication().terminate(self)
+        } else if (Int(clickEvent.modifierFlags.rawValue) & Int(NSEventModifierFlags.AlternateKeyMask.rawValue)) != 0 {     // alt click to show info
+            dialogOKCancelNoshow("Instructions", text: ("Control-Click to quit the app.\nAlt-Click to show this window again.\n\nTap to calculate BPM.\n\nBuilt by Ben Brook:   www.builtbybenbrook.com\n"))
+        } else { // regular click
             timer.invalidate()
             let elapsedTime = NSDate().timeIntervalSinceDate(lastPress)
             print(elapsedTime)
