@@ -8,7 +8,7 @@ If you mix music, you probably wonder if the song you're listening to could fit 
 
 ## Installation
 
-[Download the zip.](http://www.builtbybenbrook.com/assets/downloads/bpm.zip) Simply double click on the app icon to launch the app. To use it in the future, drag the app into your Applications folder!
+[Download the zip.](https://github.com/bencmbrook/bpm/raw/master/bpm.zip) Simply double click on the app icon to launch the app. To use it in the future, drag the app into your Applications folder!
 
 Compatible with OS X 10.10 Yosemite and later.
 
