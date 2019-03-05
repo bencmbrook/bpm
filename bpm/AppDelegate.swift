@@ -8,6 +8,17 @@
 
 import Cocoa
 
+extension String {
+    func leftPadding(toLength: Int, withPad character: Character) -> String {
+        let newLength = self.characters.count
+        if newLength < toLength {
+            return String(repeatElement(character, count: toLength - newLength)) + self
+        } else {
+            return self.substring(from: index(self.startIndex, offsetBy: newLength - toLength))
+        }
+    }
+}
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
@@ -86,7 +97,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 lastPress = NSDate()
                 i = i + 1
                 let x = Int(60/avg)
-                statusItem.title = String(x)
+                statusItem.title = String(x).leftPadding(toLength: 3, withPad: " ")
             }
             timer = NSTimer.scheduledTimerWithTimeInterval(2.5, target:self, selector: Selector("updateCounter"), userInfo: nil, repeats: false)
         }
