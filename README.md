@@ -2,7 +2,7 @@
 
 A lightweight beats-per-minute tapper for the Mac status bar
 
-![Example](http://i.imgur.com/9HkrEkI.gif)
+![Example](http://i.imgur.com/Qlh0mVF.gif)
 
 If you mix music, you probably wonder if the song you're listening to could fit into a set. This discreet app is always available to provide the answer.
 
