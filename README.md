@@ -8,7 +8,7 @@ Improvements by me ([@harryclegg](https://github.com/harryclegg)) include:
 - Project files have been upgraded to work with modern XCode.
 - Slight user interface/experience tweaks.
 
-Please see releases tab for binary download.
+Please see [latest release](https://github.com/harryclegg/bpm/releases/latest) for binary download.
 
 Original readme follows:
 
