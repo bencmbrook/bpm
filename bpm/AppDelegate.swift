@@ -8,92 +8,83 @@
 
 import Cocoa
 
-@NSApplicationMain
+@main
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-    @IBOutlet weak var window: NSWindow!
-
-    let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
+    var statusBarItem: NSStatusItem!
     
-    // load NSUserDefaults
-    let defaults = NSUserDefaults.standardUserDefaults()
+    let defaults = UserDefaults.standard
     
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
-        statusItem.title = "bpm"
+    let tapper = BPMTapper()
+    
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
+        // Create status bar item.
+        let statusBar = NSStatusBar.system
+        statusBarItem = statusBar.statusItem(
+            withLength: 27)
         
-        if let button = statusItem.button {
-            button.action = Selector("clicked:")
+        // Give button initial formatting.
+        if let button = statusBarItem.button {
+            button.title = tapper.placeholderString
+            button.action = #selector(self.handleClick(sender:))
+            button.sendAction(on: [.leftMouseUp, .rightMouseUp])
             button.keyEquivalent = ""
         }
         
-        if !defaults.boolForKey("noShowDialogOnStart") {
-            dialogOKCancelNoshow("Instructions", text: ("Control-Click to quit the app.\nAlt-Click to show this window again.\n\nTap to calculate BPM.\n\n\nBuilt by Ben Brook:   www.builtbybenbrook.com"))
+        // Show about menu unless user has ticked don't show.
+        if !defaults.bool(forKey: "noShowDialogOnStart") {
+            aboutApp()
         }
     }
     
-    var lastPress = NSDate()
-    var avg = 0.0
-    var i = 1.0
-    var timer = NSTimer()
+    @objc func handleClick(sender: NSStatusItem?) {
+        // See what caused calling of the menu action.
+        let clickEvent = NSApp.currentEvent!
+        
+        // Determine whether it was a right click.
+        let wasRightClick = clickEvent.type == NSEvent.EventType.rightMouseUp
+        
+        if (clickEvent.modifierFlags.contains(.control)) {
+            // Ctrl click to quit.
+            NSApplication.shared.terminate(self)
+            
+        } else if (clickEvent.modifierFlags.contains(.option)) {
+            // Alt click to show info.
+            aboutApp()
+            
+        } else {
+            // Calculate new average interval, and display to user as button string.
+            updateButton(withString: tapper.click(withResetCallback: updateButton(withString:), andWasRightClick: wasRightClick))
+        }
+    }
     
+    @objc func updateButton(withString: String) {
+        // Update status bar button string.
+        if let button = statusBarItem.button {
+            button.title = withString
+        }
+    }
     
-    func dialogOKCancelNoshow(question: String, text: String) -> Bool {
+    func aboutApp() {
+        // Show help popup.
+        
+        let question = "Instructions"
+        let text = "Click to calculate BPM.\nRight click to reset.\n\nControl-Click to quit the app.\nAlt-Click to show this window again."
+        
         let myPopup: NSAlert = NSAlert()
         myPopup.messageText = question
         myPopup.informativeText = text
-        myPopup.alertStyle = NSAlertStyle.WarningAlertStyle
-        myPopup.addButtonWithTitle("OK")
+        myPopup.alertStyle = NSAlert.Style.warning
+        myPopup.addButton(withTitle: "OK")
         
         myPopup.showsSuppressionButton = true
         myPopup.suppressionButton?.title = "Do not show this message on launch"
         
-        let res = myPopup.runModal()
+        myPopup.runModal()
         
-        if (myPopup.suppressionButton?.state == 1) {
-            defaults.setObject(true, forKey: "noShowDialogOnStart")
+        if (myPopup.suppressionButton?.state == .on) {
+            defaults.set(true, forKey: "noShowDialogOnStart")
         } else {
-            defaults.setObject(false, forKey: "noShowDialogOnStart")
-        }
-        
-        if res == NSAlertFirstButtonReturn {        // return based on button selected
-            return true                                //  return 1 for OK
-        }
-        return false                                    //  else return 0 for cancel
-    }
-    
-    func clicked(sender: AnyObject?) {
-        let clickEvent = NSApp.currentEvent!  // see what caused calling of the menu action
-            // modifierFlags contains a number with bits set for various modifier keys
-            // ControlKeyMask is the enum for the Ctrl key
-            // AlternateKeyMask is the enum for the Alt key
-            // use logical and with the raw values to find if the bit is set in modifierFlags
-        if (Int(clickEvent.modifierFlags.rawValue) & Int(NSEventModifierFlags.ControlKeyMask.rawValue)) != 0 {      // ctrl click to quit
-            NSApplication.sharedApplication().terminate(self)
-        } else if (Int(clickEvent.modifierFlags.rawValue) & Int(NSEventModifierFlags.AlternateKeyMask.rawValue)) != 0 {     // alt click to show info
-            dialogOKCancelNoshow("Instructions", text: ("Control-Click to quit the app.\nAlt-Click to show this window again.\n\nTap to calculate BPM.\n\nBuilt by Ben Brook:   www.builtbybenbrook.com\n"))
-        } else { // regular click
-            timer.invalidate()
-            let elapsedTime = NSDate().timeIntervalSinceDate(lastPress)
-            print(elapsedTime)
-            if elapsedTime > 2.5 {
-                print("1")
-                avg = 0.0
-                i = 1.0
-                lastPress = NSDate()
-            } else {
-                print("2")
-                avg = (avg*(i-1) + elapsedTime) / i
-                lastPress = NSDate()
-                i = i + 1
-                let x = Int(60/avg)
-                statusItem.title = String(x)
-            }
-            timer = NSTimer.scheduledTimerWithTimeInterval(2.5, target:self, selector: Selector("updateCounter"), userInfo: nil, repeats: false)
+            defaults.set(false, forKey: "noShowDialogOnStart")
         }
     }
-    
-    func updateCounter() {
-        statusItem.title = "bpm"
-    }
-    
 }

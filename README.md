@@ -1,5 +1,19 @@
 # BPM
 
+A reworked version of the bpm counter initially developed by [@bencmbrook](https://github.com/bencmbrook), as the original version is seemingly abandonware.
+
+Improvements by me ([@harryclegg](https://github.com/harryclegg)) include:
+
+- Re-written application logic.
+- Project files have been upgraded to work with modern XCode.
+- Slight user interface/experience tweaks.
+
+Please see releases tab for binary download.
+
+Original readme follows:
+
+------
+
 A lightweight beats-per-minute tapper for the Mac status bar
 
 ![Example](http://i.imgur.com/Qlh0mVF.gif)
@@ -8,7 +22,7 @@ If you mix music, you probably wonder if the song you're listening to could fit 
 
 ## Installation
 
-[Download the zip.](https://github.com/bencmbrook/bpm/raw/master/bpm.zip) Simply double click on the app icon to launch the app. To use it in the future, drag the app into your Applications folder!
+~~[Download the zip.](https://github.com/bencmbrook/bpm/raw/master/bpm.zip) Simply double click on the app icon to launch the app. To use it in the future, drag the app into your Applications folder!~~
 
 Compatible with OS X 10.10 Yosemite and later.
 
