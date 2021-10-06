@@ -30,6 +30,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             button.keyEquivalent = ""
         }
         
+        // Hide dock icon at all times.
+        NSApplication.shared.setActivationPolicy(.accessory)
+        DispatchQueue.main.async {
+            NSApplication.shared.activate(ignoringOtherApps: true)
+            NSApplication.shared.windows.first!.makeKeyAndOrderFront(self)
+        }
+        
         // Show about menu unless user has ticked don't show.
         if !defaults.bool(forKey: "noShowDialogOnStart") {
             aboutApp()
